@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+@import 'tailwindcss';
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary-500: #877EFF;
+    --primary-600: #5D5FEF;
+    --secondary-500: #FFB620;
+    --off-white: #D0DFFF;
+    --red: #FF5A5A;
+    --dark-1: #000000;
+    --dark-2: #09090A;
+    --dark-3: #101012;
+    --dark-4: #1F1F22;
+    --light-1: #FFFFFF;
+    --light-2: #EFEFEF;
+    --light-3: #7878A3;
+    --light-4: #5C5C7B;
+  }
+}
+
+@layer utilities {
+  .border-primary-500 { border: 1px solid var(--primary-500); }
+  .text-primary-500 { color: var(--primary-500); }
+  .bg-primary-500 { background-color: var(--primary-500); }
+  .text-primary-600 { color: var(--primary-600); }
+  .bg-primary-600 { background-color: var(--primary-600); }
+  .text-secondary-500 { color: var(--secondary-500); }
+  .bg-secondary-500 { background-color: var(--secondary-500); }
+  .text-off-white { color: var(--off-white); }
+  .bg-off-white { background-color: var(--off-white); }
+  .text-red { color: var(--red); }
+  .bg-red { background-color: var(--red); }
+  .text-dark-1 { color: var(--dark-1); }
+  .bg-dark-1 { background-color: var(--dark-1); }
+  .text-dark-2 { color: var(--dark-2); }
+  .bg-dark-2 { background-color: var(--dark-2); }
+  .text-dark-3 { color: var(--dark-3); }
+  .bg-dark-3 { background-color: var(--dark-3); }
+  .text-dark-4 { color: var(--dark-4); }
+  .bg-dark-4 { background-color: var(--dark-4); }
+  .text-light-1 { color: var(--light-1); }
+  .bg-light-1 { background-color: var(--light-1); }
+  .text-light-2 { color: var(--light-2); }
+  .bg-light-2 { background-color: var(--light-2); }
+  .text-light-3 { color: var(--light-3); }
+  .bg-light-3 { background-color: var(--light-3); }
+  .text-light-4 { color: var(--light-4); }
+  .bg-light-4 { background-color: var(--light-4); }
+}
+
+body {
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    font-family: Montserrat;
+    background: var(--dark-3);
+    color: var(--light-1);
+}
+
+.display-none{
+    display: none;
+}

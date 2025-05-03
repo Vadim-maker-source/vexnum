@@ -1,0 +1,46 @@
+/* PostStats.css */
+.post-stats {
+    display: flex;
+    gap: 16px;
+    padding: 8px 16px;
+    border-top: 1px solid #f0f0f0;
+  }
+  
+  .post-stats__item {
+    display: flex;
+    align-items: center;
+  }
+  
+  .post-stats__button {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px 8px;
+    color: #666;
+    font-size: 14px;
+    transition: color 0.2s ease;
+  }
+  
+  .post-stats__button:hover {
+    color: #333;
+  }
+  
+  .post-stats__button--active {
+    color: #ff4757;
+  }
+  
+  .post-stats__button--active:hover {
+    color: #ff6b81;
+  }
+  
+  .post-stats__icon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .post-stats__count {
+    font-size: 14px;
+  }
