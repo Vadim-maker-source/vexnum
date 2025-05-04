@@ -11,12 +11,10 @@ const AuthLayout: React.FC = () => {
     const checkAuth = async () => {
       try {
         const user = await account.get();
-        // Если пользователь авторизован и находится на странице аутентификации - редирект на главную
         if(user && (location.pathname === '/sign-in' || location.pathname === '/sign-up')) {
           navigate("/");
         }
       } catch (error) {
-        // Если пользователь не авторизован и пытается получить доступ к защищенной странице
         if(location.pathname !== '/sign-in' && location.pathname !== '/sign-up') {
           navigate("/sign-in");
         }
@@ -33,9 +31,9 @@ const AuthLayout: React.FC = () => {
   }
 
   return (
-    <div className="sign-container">
+    <div className="">
       <Outlet />
-      <img src="/assets/aboutImg.png" alt="" className="sign-img" />
+      {/* <img src="/assets/aboutImg.png" alt="" className="sign-img" /> */}
     </div>
   );
 };

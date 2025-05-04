@@ -18,7 +18,7 @@ const Home = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState<User | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
-  const [searchType, setSearchType] = useState<'title' | 'author' | 'hashtags'>('title');
+  const [searchType, setSearchType] = useState<'название' | 'автор' | 'хештеги'>('название');
 
   // Получение текущего пользователя
   useEffect(() => {
@@ -64,11 +64,11 @@ const Home = () => {
       const query = searchQuery.toLowerCase();
       
       switch (searchType) {
-        case 'title':
+        case 'название':
           return post.title?.toLowerCase().includes(query);
-        case 'author':
+        case 'автор':
           return post.author.name.toLowerCase().includes(query);
-        case 'hashtags':
+        case 'хештеги':
           return post.hashtags?.some((tag: string) => 
             tag.toLowerCase().includes(query)
           );
@@ -106,13 +106,13 @@ const Home = () => {
     <div className="min-h-screen bg-dark-3">
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
-          <h1 className="text-3xl font-bold text-light-1">Recent Posts</h1>
+          <h1 className="text-3xl font-bold text-light-1">Недавние публикации</h1>
           <div className="flex gap-4">
             <Link 
               to="/add-post" 
               className="bg-primary-500 text-light-1 px-4 py-2 rounded-lg hover:bg-primary-600 transition-colors"
             >
-              Create Post
+              Создать публикацию
             </Link>
           </div>
         </div>
@@ -122,7 +122,7 @@ const Home = () => {
           <div className="relative mb-4">
             <input
               type="text"
-              placeholder={`Search by ${searchType}...`}
+              placeholder={`Ищите по ${searchType}...`}
               className="w-full p-3 border border-dark-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 bg-dark-3 text-light-1"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -130,7 +130,7 @@ const Home = () => {
           </div>
           
           <div className="flex flex-wrap gap-2">
-            {['title', 'author', 'hashtags'].map((type) => (
+            {['название', 'автор', 'хештеги'].map((type) => (
               <button
                 key={type}
                 className={`px-4 py-2 rounded-lg transition-colors ${
@@ -138,7 +138,7 @@ const Home = () => {
                     ? 'bg-primary-500 text-light-1' 
                     : 'bg-dark-4 hover:bg-dark-3 text-light-2'
                 }`}
-                onClick={() => setSearchType(type as 'title' | 'author' | 'hashtags')}
+                onClick={() => setSearchType(type as 'название' | 'автор' | 'хештеги')}
               >
                 {type.charAt(0).toUpperCase() + type.slice(1)}
               </button>

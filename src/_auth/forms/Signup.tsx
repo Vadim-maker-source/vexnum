@@ -102,74 +102,92 @@ const Signup: React.FC = () => {
   };
 
   return (
-    <div className="sign-main">
-      <img src="/assets/logo.svg" alt="logo" />
-      
-      {error && <div className="error-message">{error}</div>}
-      {notification && <div className="success-message">{notification}</div>}
-      
-      <form ref={form} onSubmit={handleSubmit}>
-        <div>
-          <label>Имя:</label>
-          <input
-            type="text"
-            value={user.name}
-            onChange={(e) => setUser({ ...user, name: e.target.value })}
-            required
-            disabled={isLoading}
+    <div className="h-screen flex items-center justify-center p-5 font-sans ab-center w-120">
+        <div className="w-full bg-dark-2 rounded-lg shadow-lg p-12">
+        <div className="flex justify-center mb-8">
+          <img 
+            src="/assets/images/vexnum.png" 
+            width={170} 
+            height={45} 
+            alt="Vexnum Logo"
+            className="transition-transform duration-200 hover:scale-105"
           />
         </div>
         
-        <div>
-          <label>Почта:</label>
-          <input
-            type="email"
-            value={user.email}
-            onChange={(e) => setUser({ ...user, email: e.target.value })}
-            required
-            disabled={isLoading}
-          />
-        </div>
+        {error && (
+          <div className="mb-4 p-3 bg-red/20 text-red rounded-md text-sm border border-red/30">
+            {error}
+          </div>
+        )}
         
-        <div>
-          <label>Пароль:</label>
-          <input
-            type="password"
-            value={user.password}
-            onChange={(e) => setUser({ ...user, password: e.target.value })}
-            required
-            disabled={isLoading}
-          />
-        </div>
+        {notification && (
+          <div className="mb-4 p-3 bg-green-100 text-green-700 rounded-md text-sm">
+            {notification}
+          </div>
+        )}
         
-        {/* <div className="code-cont">
-          <label>Код подтверждения:</label>
-          <input
-            type="text"
-            maxLength={6}
-            value={userCode}
-            onChange={(e) => setUserCode(e.target.value)}
-            placeholder="Введите 6-значный код"
-            required
-            disabled={isLoading || !isCodeSent}
-          />
-          <button 
-            type="button" 
-            onClick={sendEmail}
-            disabled={isLoading || !user.email}
+        <form ref={form} onSubmit={handleSubmit} className="space-y-6 w-full">
+          <div className="w-full">
+            <label className="block text-sm font-medium text-light-2 mb-2">
+              Имя:
+            </label>
+            <input
+              type="text"
+              value={user.name}
+              onChange={(e) => setUser({ ...user, name: e.target.value })}
+              required
+              disabled={isLoading}
+              className="w-full px-5 py-4 bg-dark-3 text-light-1 border border-dark-4 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent placeholder-light-4 disabled:opacity-70 text-base"
+              placeholder="Ваше имя"
+            />
+          </div>
+          
+          <div>
+            <label className="block text-sm font-medium text-light-2 mb-2">
+              Почта:
+            </label>
+            <input
+              type="email"
+              value={user.email}
+              onChange={(e) => setUser({ ...user, email: e.target.value })}
+              required
+              disabled={isLoading}
+              className="w-full px-5 py-4 bg-dark-3 text-light-1 border border-dark-4 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent placeholder-light-4 disabled:opacity-70 text-base"
+              placeholder="example@mail.com"
+            />
+          </div>
+          
+          <div>
+            <label className="block text-sm font-medium text-light-2 mb-2">
+              Пароль:
+            </label>
+            <input
+              type="password"
+              value={user.password}
+              onChange={(e) => setUser({ ...user, password: e.target.value })}
+              required
+              disabled={isLoading}
+              className="w-full px-5 py-4 bg-dark-3 text-light-1 border border-dark-4 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent placeholder-light-4 disabled:opacity-70 text-base"
+              placeholder="••••••••"
+            />
+          </div>
+          
+          <button
+            type="submit"
+            disabled={isLoading}
+            className={`w-full px-5 py-4 rounded-md shadow-sm text-base font-medium text-light-1 bg-primary-600 hover:bg-primary-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors ${isLoading ? 'opacity-70 cursor-not-allowed' : ''}`}
           >
-            {isLoading ? "Отправка..." : "Отправить код"}
+            {isLoading ? "Регистрация..." : "Зарегистрироваться"}
           </button>
-        </div> */}
-        
-        <button type="submit" disabled={isLoading}>
-          {isLoading ? "Регистрация..." : "Зарегистрироваться"}
-        </button>
-      </form>
+        </form>
 
-      <p style={{ color: '#000' }}>
-        Уже есть аккаунт?&nbsp;&nbsp;<Link to="/sign-in">Войдите</Link>
-      </p>
+        <p className="mt-6 text-center text-sm text-light-3">
+          Уже есть аккаунт?{' '}
+          <Link to="/sign-in" className="font-medium text-primary-500 hover:text-primary-400 transition-colors">
+            Войдите
+          </Link>
+        </p>
+      </div>
     </div>
   );
 };

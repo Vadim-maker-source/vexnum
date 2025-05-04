@@ -113,7 +113,7 @@ const Topbar = () => {
                         className="text-light-2 hover:text-primary-500 transition-colors duration-200 font-medium text-sm uppercase tracking-wider flex items-center"
                     >
                         <img src="/assets/icons/add-post.svg" width={25} height={25} alt="Create Post" />
-                        <span className="hidden md:inline ml-2">Create Post</span>
+                        <span className="hidden md:inline ml-2">Создать</span>
                     </Link>
                     
                     <button 
@@ -121,7 +121,7 @@ const Topbar = () => {
                         className="text-light-2 hover:text-primary-500 transition-colors duration-200 font-medium text-sm uppercase tracking-wider flex items-center"
                     >
                         <img src="/assets/icons/bookmark2.svg" width={25} height={25} alt="Saved" />
-                        <span className="hidden md:inline ml-2">Saved</span>
+                        <span className="hidden md:inline ml-2">Избранные</span>
                     </button>
                 </div>
 
@@ -157,7 +157,7 @@ const Topbar = () => {
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                         </svg>
-                        <span className="ml-2 hidden md:inline">Logout</span>
+                        <span className="ml-2 hidden md:inline">Выйти</span>
                     </button>
                 </div>
             </div>

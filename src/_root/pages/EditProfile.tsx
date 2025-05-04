@@ -171,12 +171,12 @@ const EditProfile = () => {
   };
 
   if (loading) {
-    return <div className="flex justify-center items-center h-screen">Loading...</div>;
+    return <div className="flex justify-center items-center h-screen">Загрузка...</div>;
   }
 
   return (
     <div className="max-w-2xl mx-auto p-4 text-light-1">
-      <h1 className="text-2xl font-bold mb-6">Edit Profile</h1>
+      <h1 className="text-2xl font-bold mb-6">Изменить профиль</h1>
       
       {error && (
         <div className="bg-red text-light-1 px-4 py-3 rounded-lg mb-4">
@@ -201,12 +201,12 @@ const EditProfile = () => {
               />
             ) : (
               <div className="w-full h-full bg-dark-4 flex items-center justify-center">
-                <span className="text-light-3">No image</span>
+                <span className="text-light-3">Нет фотографии</span>
               </div>
             )}
           </div>
           <label className="cursor-pointer bg-primary-500 text-light-1 px-4 py-2 rounded-lg hover:bg-primary-600 transition-colors">
-            Change Photo
+            Изменить фото
             <input
               type="file"
               accept="image/*"
@@ -218,7 +218,7 @@ const EditProfile = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
-            <label className="block text-sm font-medium text-light-2">Name</label>
+            <label className="block text-sm font-medium text-light-2">Имя</label>
             <input
               type="text"
               name="name"
@@ -230,7 +230,7 @@ const EditProfile = () => {
           </div>
 
           <div className="space-y-2">
-            <label className="block text-sm font-medium text-light-3">Email</label>
+            <label className="block text-sm font-medium text-light-3">Почта</label>
             <input
               type="email"
               name="email"
@@ -243,7 +243,7 @@ const EditProfile = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
-            <label className="block text-sm font-medium text-light-3">Current Password</label>
+            <label className="block text-sm font-medium text-light-3">Текущий пароль</label>
             <div className="relative">
               <input
                 type={showPassword ? "text" : "password"}
@@ -265,7 +265,7 @@ const EditProfile = () => {
           </div>
 
           <div className="space-y-2">
-            <label className="block text-sm font-medium text-light-3">New Password</label>
+            <label className="block text-sm font-medium text-light-3">Новый пароль</label>
             <div className="relative">
               <input
                 type={showNewPassword ? "text" : "password"}
@@ -287,7 +287,7 @@ const EditProfile = () => {
         </div>
 
         <div className="space-y-2">
-          <label className="block text-sm font-medium text-light-2">Bio</label>
+          <label className="block text-sm font-medium text-light-2">О себе</label>
           <textarea
             name="bio"
             value={formData.bio}
@@ -303,7 +303,7 @@ const EditProfile = () => {
             onClick={() => navigate(-1)}
             className="px-4 py-2 border border-dark-4 rounded-lg hover:bg-dark-3 transition-colors"
           >
-            Cancel
+            Отменить
           </button>
           <button
             type="submit"
@@ -316,10 +316,10 @@ const EditProfile = () => {
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
-                Saving...
+                Сохранение...
               </span>
             ) : (
-              'Save Changes'
+              'Сохранить'
             )}
           </button>
         </div>

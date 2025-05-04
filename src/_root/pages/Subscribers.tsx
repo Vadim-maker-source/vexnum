@@ -125,7 +125,7 @@ const Subscribers: React.FC = () => {
                     }`}
                     onClick={() => handleTabChange('subscribers')}
                 >
-                    Subscribers
+                    Подписчики
                 </button>
                 <button
                     className={`px-4 py-2 font-medium ${
@@ -135,7 +135,7 @@ const Subscribers: React.FC = () => {
                     }`}
                     onClick={() => handleTabChange('subscriptions')}
                 >
-                    Subscriptions
+                    Подписки
                 </button>
             </div>
             

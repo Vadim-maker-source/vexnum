@@ -173,10 +173,10 @@ const Saved = () => {
   if (!currentUserId) {
     return (
       <div className="flex-center flex-col gap-4 h-full">
-        <h2 className="h2-bold">Saved Posts</h2>
-        <p>Please log in to view your saved posts</p>
+        <h2 className="h2-bold">Избранные публикации</h2>
+        <p>Пожалуйста, войдите в аккаунт</p>
         <Link to="/sign-in" className="text-primary-500">
-          Sign In
+          Войти
         </Link>
       </div>
     );
@@ -185,8 +185,8 @@ const Saved = () => {
   if (savedPosts.length === 0) {
     return (
       <div className="flex-center flex-col gap-4 h-full">
-        <h2 className="h2-bold">Saved Posts</h2>
-        <p>You haven't saved any posts yet</p>
+        <h2 className="h2-bold">Избранные публикации</h2>
+        <p>У вас нет избранных публикаций</p>
       </div>
     );
   }
@@ -194,7 +194,7 @@ const Saved = () => {
   return (
     <div className="saved-container">
       <div className="flex gap-2 w-full max-w-5xl">
-        <h2 className="h2-bold md:h3-bold text-left w-full">Saved Posts</h2>
+        <h2 className="h2-bold md:h3-bold text-left w-full">Избранные публикации</h2>
       </div>
 
       <ul className="w-full flex flex-col gap-9 max-w-5xl">

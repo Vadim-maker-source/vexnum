@@ -123,7 +123,7 @@ const Comments = () => {
             
             <div className="comments-section">
                 <h3 className="text-xl font-semibold mb-4">
-                    Comments ({comments.length})
+                    Комментарии ({comments.length})
                 </h3>
                 
                 <div className="comments-list flex-col-reverse space-y-4 mb-6">
@@ -132,12 +132,12 @@ const Comments = () => {
                             <div key={comment.$id} className="comment bg-dark-2 border-primary-500 p-4 rounded-lg">
                                 <p className="text-light-2">{comment.text}</p>
                                 <small className="text-light-4">
-                                    By: {getUserDisplay(comment)}
+                                    От: {getUserDisplay(comment)}
                                 </small>
                             </div>
                         ))
                     ) : (
-                        <p className="text-light-4">No comments yet</p>
+                        <p className="text-light-4">Нет комментариев</p>
                     )}
                 </div>
 
@@ -156,7 +156,7 @@ const Comments = () => {
                             disabled={!commentText.trim() || isSubmitting}
                             className="mt-2 bg-primary-500 text-light-1 px-4 py-2 rounded-lg hover:bg-primary-600 disabled:bg-dark-4"
                         >
-                            {isSubmitting ? 'Posting...' : 'Post Comment'}
+                            {isSubmitting ? 'Загрузка...' : 'Загрузить'}
                         </button>
                     </div>
                 ) : (

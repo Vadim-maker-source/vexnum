@@ -285,13 +285,13 @@ const Profile: React.FC = () => {
                             onClick={() => navigate(`/edit/${user.userId}`)}
                             className="px-4 py-2 bg-primary-500 text-light-1 rounded-md hover:bg-primary-600 transition-colors"
                         >
-                            Edit Profile
+                            Редактировать профиль
                         </button>
                         <button
                             onClick={() => navigate(`/subscribers/${user.userId}`)}
                             className="px-4 py-2 bg-dark-3 text-light-2 rounded-md hover:bg-dark-4 transition-colors"
                         >
-                            Subscriptions
+                            Подписчики
                         </button>
                     </div>
                 ) : (
@@ -300,23 +300,23 @@ const Profile: React.FC = () => {
                             onClick={handleSubscribe}
                             className={`px-4 py-2 ${isSubscribed ? 'bg-red hover:bg-red-600' : 'bg-primary-500 hover:bg-primary-600'} text-light-1 rounded-md transition-colors`}
                         >
-                            {isSubscribed ? 'Unsubscribe' : 'Subscribe'}
+                            {isSubscribed ? 'Отписаться' : 'Подписаться'}
                         </button>
                         <button
                             onClick={() => navigate(`/subscribers/${user.userId}`)}
                             className="px-4 py-2 bg-dark-3 text-light-2 rounded-md hover:bg-dark-4 transition-colors"
                         >
-                            Subscriptions
+                            Подписчики
                         </button>
                     </div>
                 )}
             </div>
 
             <div className="border-t border-dark-4 pt-6">
-                <h3 className="text-xl font-semibold mb-4 text-light-1">Posts</h3>
+                <h3 className="text-xl font-semibold mb-4 text-light-1">Публикации</h3>
                 
                 {enhancedPosts.length === 0 ? (
-                    <p className="text-light-4 text-center py-4">No posts yet</p>
+                    <p className="text-light-4 text-center py-4">Нет публикаций</p>
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                         {enhancedPosts.map(post => (
@@ -373,7 +373,7 @@ const Profile: React.FC = () => {
                       </>
                     ) : (
                       <div className="absolute inset-0 flex items-center justify-center text-gray-400">
-                        No image
+                        Нет изображения
                       </div>
                     )}
                   </div>
@@ -388,7 +388,7 @@ const Profile: React.FC = () => {
                                             </div>
                                         )}
                                         <p className="text-sm text-light-4">
-                                            Posted: {new Date(post.createdAt).toLocaleDateString()}
+                                            Загружено: {new Date(post.createdAt).toLocaleDateString()}
                                         </p>
                                     </div>
                 </div>

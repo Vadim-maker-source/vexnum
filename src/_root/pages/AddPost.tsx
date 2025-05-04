@@ -130,7 +130,7 @@ const AddPost = () => {
 
   return (
     <div className="max-w-2xl mx-auto p-4 text-light-1">
-      <h1 className="text-2xl font-bold mb-6">Create New Post</h1>
+      <h1 className="text-2xl font-bold mb-6">Создать новую публикацию</h1>
       
       {error && (
         <div className="bg-red text-light-1 px-4 py-3 rounded-lg mb-4">
@@ -146,7 +146,7 @@ const AddPost = () => {
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="space-y-2">
-          <label className="block text-sm font-medium text-light-2">Title</label>
+          <label className="block text-sm font-medium text-light-2">Название</label>
           <input
             type="text"
             value={post.title}
@@ -157,11 +157,11 @@ const AddPost = () => {
         </div>
 
         <div className="space-y-2">
-          <label className="block text-sm font-medium text-light-2">Images (up to 10)</label>
+          <label className="block text-sm font-medium text-light-2">Картинки (до 10)</label>
           <div className="border border-dark-4 rounded-lg bg-dark-3 p-4">
             <label className="flex flex-col items-center justify-center border-2 border-dashed border-dark-4 rounded-lg p-6 cursor-pointer hover:bg-dark-4 transition-colors">
               <span className="bg-primary-500 text-light-1 px-4 py-2 rounded-lg mb-2 hover:bg-primary-600 transition-colors">
-                Choose Files
+                Выберите файлы
               </span>
               <span className="text-light-3 text-sm">
                 {post.images.length > 0 
@@ -205,7 +205,7 @@ const AddPost = () => {
         </div>
 
         <div className="space-y-2">
-          <label className="block text-sm font-medium text-light-2">Hashtags (comma separated)</label>
+          <label className="block text-sm font-medium text-light-2">Хештеги (comma separated)</label>
           <input
             type="text"
             value={post.hashtags}
@@ -222,7 +222,7 @@ const AddPost = () => {
             className="px-4 py-2 border border-dark-4 rounded-lg hover:bg-dark-3 transition-colors"
             disabled={isLoading}
           >
-            Cancel
+            Отменить
           </button>
           <button
             type="submit"
@@ -235,10 +235,10 @@ const AddPost = () => {
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
-                Creating...
+                Создание...
               </span>
             ) : (
-              'Create Post'
+              'Создать публикацию'
             )}
           </button>
         </div>
