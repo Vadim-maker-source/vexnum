@@ -293,6 +293,10 @@ const Profile: React.FC = () => {
                         >
                             Подписчики
                         </button>
+                        <div onClick={() => navigate(`/chat/${user.$id}`)}>
+                          <span>Чат</span>
+                          <img src="/assets/icons/chat.svg" alt="" />
+                        </div>
                     </div>
                 ) : (
                     <div className="flex gap-2">
@@ -308,6 +312,10 @@ const Profile: React.FC = () => {
                         >
                             Подписчики
                         </button>
+                        <div onClick={() => navigate(`/chat/${user.$id}`)}>
+                          <span>Чат</span>
+                          <img src="/assets/icons/chat.svg" alt="" />
+                        </div>
                     </div>
                 )}
             </div>

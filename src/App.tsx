@@ -11,28 +11,35 @@ import EditProfile from "./_root/pages/EditProfile"
 import EditPost from "./_root/pages/EditPost"
 import Subscribers from "./_root/pages/Subscribers"
 import Comments from "./_root/pages/Comments"
+import People from "./_root/pages/People"
+import Chat from "./_root/pages/Chat"
+import { ChatProvider } from "./context/ChatContext"
 
 function App() {
-
   return (
     <main className="flex h-screen">
-      <Routes>
-      <Route element={<AuthLayout />}>
-          <Route path="/sign-in" element={<Signin />} />
-          <Route path="/sign-up" element={<Signup />} />
-        </Route>
+      <ChatProvider>
+        <Routes>
+          <Route element={<AuthLayout />}>
+            <Route path="/sign-in" element={<Signin />} />
+            <Route path="/sign-up" element={<Signup />} />
+          </Route>
 
-        <Route element={<RootLayout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/add-post" element={<AddPost />} />
-          <Route path="/saved/:id" element={<Saved />} />
-          <Route path="/profile/:userId" element={<Profile />} />
-          <Route path="/edit/:userId" element={<EditProfile />} />
-          <Route path="/comments/:postId" element={<Comments />} />
-          <Route path="/edit-post/:postId" element={<EditPost />} />
-          <Route path="/subscribers/:userId" element={<Subscribers />} />
-        </Route>
-      </Routes>
+          <Route element={<RootLayout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/add-post" element={<AddPost />} />
+            <Route path="/saved/:id" element={<Saved />} />
+            <Route path="/profile/:userId" element={<Profile />} />
+            <Route path="/edit/:userId" element={<EditProfile />} />
+            <Route path="/comments/:postId" element={<Comments />} />
+            <Route path="/edit-post/:postId" element={<EditPost />} />
+            <Route path="/subscribers/:userId" element={<Subscribers />} />
+            
+            <Route path="/people" element={<People />} />
+            <Route path="/chat/:userId" element={<Chat />} />
+          </Route>
+        </Routes>
+      </ChatProvider>
     </main>
   )
 }

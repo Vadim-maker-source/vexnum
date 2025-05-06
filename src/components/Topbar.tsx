@@ -123,6 +123,13 @@ const Topbar = () => {
                         <img src="/assets/icons/bookmark2.svg" width={25} height={25} alt="Saved" />
                         <span className="hidden md:inline ml-2">Избранные</span>
                     </button>
+                    <Link 
+                        to="/people"
+                        className="text-light-2 hover:text-primary-500 transition-colors duration-200 font-medium text-sm uppercase tracking-wider flex items-center"
+                    >
+                        <img src="/assets/icons/people2.svg" width={25} height={25} alt="Create Post" />
+                        <span className="hidden md:inline ml-2">Люди</span>
+                    </Link>
                 </div>
 
                 {/* User Profile */}
