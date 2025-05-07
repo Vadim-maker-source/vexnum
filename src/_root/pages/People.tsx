@@ -1,18 +1,8 @@
 import { useEffect, useState, useMemo } from 'react';
-import { ID, Query } from 'appwrite';
 import { appwriteConfig, databases, storage } from '../../lib/config';
 import { getCurrentUser } from '../../lib/api';
 import { User } from '../../lib/types';
-import { useChat } from '../../context/ChatContext';
 import { useNavigate } from 'react-router-dom';
-
-interface Chat {
-    chatId: string;
-    $id: string;
-    participants: string[];
-    createdAt: string;
-    updatedAt: string;
-}
 
 const People = () => {
     const [users, setUsers] = useState<User[]>([]);
@@ -20,7 +10,6 @@ const People = () => {
     const [profileImageUrl, setProfileImageUrl] = useState<string | null>(null);
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
-    const { setCurrentChat } = useChat();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -53,6 +42,10 @@ const People = () => {
         fetchUser();
     }, []);
 
+    if(profileImageUrl){
+        console.log("Image:", profileImageUrl)
+    }
+
     useEffect(() => {
         const fetchUsers = async () => {
             try {
@@ -79,54 +72,54 @@ const People = () => {
         );
     }, [users, searchTerm]);
 
-    const handleUserClick = async (user: User) => {
-        if (!currentUser) return;
+    // const handleUserClick = async (user: User) => {
+    //     if (!currentUser) return;
     
-        try {
-            const response = await databases.listDocuments(
-                appwriteConfig.databaseId,
-                appwriteConfig.chatsCollectionId,
-                [
-                    Query.contains('participants', currentUser.userId),
-                    Query.contains('participants', user.userId)
-                ]
-            );
+    //     try {
+    //         const response = await databases.listDocuments(
+    //             appwriteConfig.databaseId,
+    //             appwriteConfig.chatsCollectionId,
+    //             [
+    //                 Query.contains('participants', currentUser.userId),
+    //                 Query.contains('participants', user.userId)
+    //             ]
+    //         );
     
-            let chatId: Chat;
+    //         let chatId: Chat;
             
-            if (response.documents.length > 0) {
-                chatId = {
-                    chatId: response.documents[0].$id,
-                    $id: response.documents[0].$id,
-                    participants: response.documents[0].participants,
-                    createdAt: response.documents[0].createdAt,
-                    updatedAt: response.documents[0].updatedAt
-                };
-            } else {
-                const newChat = await databases.createDocument(
-                    appwriteConfig.databaseId,
-                    appwriteConfig.chatsCollectionId,
-                    ID.unique(),
-                    {
-                        participants: [currentUser.userId, user.userId],
-                        createdAt: new Date().toISOString(),
-                        updatedAt: new Date().toISOString()
-                    }
-                );
-                chatId = {
-                    chatId: newChat.$id,
-                    $id: newChat.$id,
-                    participants: newChat.participants,
-                    createdAt: newChat.createdAt,
-                    updatedAt: newChat.updatedAt
-                };
-            }
-            navigate(`/chat/${chatId.$id}`)
-            setCurrentChat(chatId);
-        } catch (error) {
-            console.error('Error creating/fetching chat:', error);
-        }
-    };
+    //         if (response.documents.length > 0) {
+    //             chatId = {
+    //                 chatId: response.documents[0].$id,
+    //                 $id: response.documents[0].$id,
+    //                 participants: response.documents[0].participants,
+    //                 createdAt: response.documents[0].createdAt,
+    //                 updatedAt: response.documents[0].updatedAt
+    //             };
+    //         } else {
+    //             const newChat = await databases.createDocument(
+    //                 appwriteConfig.databaseId,
+    //                 appwriteConfig.chatsCollectionId,
+    //                 ID.unique(),
+    //                 {
+    //                     participants: [currentUser.userId, user.userId],
+    //                     createdAt: new Date().toISOString(),
+    //                     updatedAt: new Date().toISOString()
+    //                 }
+    //             );
+    //             chatId = {
+    //                 chatId: newChat.$id,
+    //                 $id: newChat.$id,
+    //                 participants: newChat.participants,
+    //                 createdAt: newChat.createdAt,
+    //                 updatedAt: newChat.updatedAt
+    //             };
+    //         }
+    //         navigate(`/chat/${chatId.$id}`)
+    //         setCurrentChat(chatId);
+    //     } catch (error) {
+    //         console.error('Error creating/fetching chat:', error);
+    //     }
+    // };
 
     if (loading) return <div className="p-4 text-light-1">Loading...</div>;
 
