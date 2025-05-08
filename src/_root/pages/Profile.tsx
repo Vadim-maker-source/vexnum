@@ -247,9 +247,6 @@ const Profile: React.FC = () => {
     fetchCount();
   }, [user?.userId]);
 
-
-  
-
   if (loading || subscriptionLoading) return <div className="flex-center h-screen">Loading...</div>;
   if (error) return <div className="flex-center h-screen text-red-500">{error}</div>;
   if (!user) return <div className="flex-center h-screen">User not found</div>;

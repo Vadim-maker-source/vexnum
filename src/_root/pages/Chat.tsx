@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { client, databases, storage } from '../../lib/config';
 import { appwriteConfig } from '../../lib/config';
 import { Query, ID, Models } from 'appwrite';
@@ -238,6 +238,7 @@ const Chat = () => {
         >
           ←
         </button>
+        <Link to={`/profile/${recipient?.$id}`}>
         {recipient?.imageId && (
           <img
             src={storage.getFileView(appwriteConfig.storageId, recipient.imageId)}
@@ -252,6 +253,7 @@ const Chat = () => {
           <h2 className="font-semibold">{recipient?.name}</h2>
           <p className="text-xs text-light-3">Online</p>
         </div>
+        </Link>
       </div>
 
       {/* Сообщения */}

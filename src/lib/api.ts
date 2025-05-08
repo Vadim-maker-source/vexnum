@@ -436,3 +436,25 @@ export const getUserSubscriptions = async (userId: string): Promise<Subscription
     throw error;
   }
 };
+
+interface Story {
+  $id: string;
+  authorId: string;
+  mediaUrl: string;
+  mediaType: 'image' | 'video';
+  duration?: number;
+  createdAt: string;
+  viewed?: boolean;
+}
+
+export const getUserStories = async (userId: string): Promise<Story[]> => {
+  const response = await databases.listDocuments(
+    appwriteConfig.databaseId,
+    appwriteConfig.storiesCollectionId,
+    [
+      Query.equal('authorId', userId),
+      Query.greaterThan('expiresAt', new Date().toISOString())
+    ]
+  );
+  return response.documents as unknown as Story[];
+};

@@ -3,6 +3,7 @@ import { account } from '../../lib/config';
 import { Link, useNavigate } from 'react-router-dom';
 import { getRecentPosts, PostWithAuthor } from '../../lib/api';
 import PostCard from '../../components/PostCard';
+import Stories from '../../components/Stories';
 
 interface User {
   $id: string;
@@ -104,7 +105,9 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-dark-3">
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-9"><Stories /></div>
+        
+      <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
           <h1 className="text-3xl font-bold text-light-1">Недавние публикации</h1>
           <div className="flex gap-4">
