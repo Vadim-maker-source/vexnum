@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 interface StoriesModalProps {
   stories: {
@@ -8,6 +9,7 @@ interface StoriesModalProps {
     duration?: number;
   }[];
   onClose: () => void;
+  authorId: string;
   authorName: string;
   authorAvatar?: string;
   onStoryViewed: () => void;
@@ -15,9 +17,10 @@ interface StoriesModalProps {
 }
 
 const StoriesModal = ({ 
-  stories, 
-  onClose, 
-  authorName, 
+  stories,
+  onClose,
+  authorId,
+  authorName,
   authorAvatar,
   onStoryViewed,
   onNextUser
@@ -31,25 +34,21 @@ const StoriesModal = ({
   const [isVideoReady, setIsVideoReady] = useState(false);
   
   const currentStory = stories[currentIndex];
-
   
-  
-  // Функция для получения реальной продолжительности (с ограничением в 1 минуту для видео)
   const getActualDuration = () => {
-    if (!currentStory) return 5000; // Fallback duration if story is undefined
-    if (currentStory.mediaType === 'image') return 5000; // 5 секунд для изображений
+    if (!currentStory) return 5000;
+    if (currentStory.mediaType === 'image') return 5000;
     
     const durationInMs = currentStory.duration ? currentStory.duration * 1000 : 10000;
-    return Math.min(durationInMs, 60000); // Ограничиваем 1 минутой
+    return Math.min(durationInMs, 60000);
   };
   
   const getProgressDuration = () => {
-    if (!currentStory) return 5000; // Fallback duration if story is undefined
+    if (!currentStory) return 5000;
     if (currentStory.mediaType === 'image') return 5000;
     return currentStory.duration ? currentStory.duration * 1000 : 10000;
   };
   
-  // Add this check at the beginning of the component
   if (!stories.length || !currentStory) {
     onClose();
     return null;
@@ -58,7 +57,6 @@ const StoriesModal = ({
   const actualDuration = getActualDuration();
   const progressDuration = getProgressDuration();
 
-  // Очистка при размонтировании
   useEffect(() => {
     return () => {
       isMountedRef.current = false;
@@ -69,7 +67,6 @@ const StoriesModal = ({
     };
   }, []);
 
-  // Сброс состояния при изменении stories
   useEffect(() => {
     setCurrentIndex(0);
     setProgress(0);
@@ -77,7 +74,6 @@ const StoriesModal = ({
     setIsVideoReady(false);
   }, [stories]);
 
-  // Прогресс бар - теперь используем progressDuration для расчета скорости
   useEffect(() => {
     if (!isPlaying) {
       if (progressIntervalRef.current) {
@@ -90,14 +86,12 @@ const StoriesModal = ({
     const startTime = Date.now();
     progressIntervalRef.current = window.setInterval(() => {
       const elapsed = Date.now() - startTime;
-      // Используем actualDuration для определения, когда переходить к следующему сторису
       if (elapsed >= actualDuration) {
         setProgress(100);
         goToNext();
       } else {
-        // Но для прогресс-бара используем полную длительность (progressDuration)
         const newProgress = (elapsed / progressDuration) * 100;
-        setProgress(Math.min(newProgress, 100)); // Не даем прогрессу превысить 100%
+        setProgress(Math.min(newProgress, 100));
       }
     }, 50);
 
@@ -109,7 +103,6 @@ const StoriesModal = ({
     };
   }, [currentIndex, isPlaying, actualDuration, progressDuration]);
 
-  // Управление видео
   useEffect(() => {
     const video = videoRef.current;
     if (!video || currentStory.mediaType !== 'video') {
@@ -133,7 +126,6 @@ const StoriesModal = ({
 
     const handleTimeUpdate = () => {
       if (!isCleanedUp && isMountedRef.current && video.duration) {
-        // Если видео достигло ограничения по времени (1 минута), переходим к следующему сторису
         if (video.currentTime >= 60) {
           goToNext();
         }
@@ -164,7 +156,6 @@ const StoriesModal = ({
     video.addEventListener('play', handlePlay);
     video.addEventListener('pause', handlePause);
 
-    // Настройка видео
     setIsVideoReady(false);
     video.muted = true;
     video.preload = "auto";
@@ -192,7 +183,6 @@ const StoriesModal = ({
     };
   }, [currentIndex, currentStory.mediaType, currentStory.mediaUrl]);
 
-  // Управление воспроизведением/паузой
   useEffect(() => {
     const video = videoRef.current;
     if (!video || currentStory.mediaType !== 'video' || !isVideoReady) return;
@@ -267,7 +257,6 @@ const StoriesModal = ({
 
   useEffect(() => {
     if (!stories.length) {
-      // Use setTimeout to defer the onClose call
       const timer = setTimeout(() => onClose(), 0);
       return () => clearTimeout(timer);
     }
@@ -289,6 +278,7 @@ const StoriesModal = ({
       
       {/* Header */}
       <div className="flex items-center p-4">
+      <Link to={`/profile/${authorId}`} className="flex items-center">
         {authorAvatar ? (
           <img 
             src={authorAvatar} 
@@ -301,6 +291,7 @@ const StoriesModal = ({
           </div>
         )}
         <span className="text-light-1 font-medium">{authorName}</span>
+      </Link>
         <button 
           onClick={onClose}
           className="ml-auto text-light-1"

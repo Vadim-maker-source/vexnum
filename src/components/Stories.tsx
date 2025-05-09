@@ -260,12 +260,12 @@ const Stories = () => {
         <StoriesModal
           key={selectedUser?.authorId || 'modal'}
           stories={selectedUser?.stories || []}
+          authorId={String(selectedUser?.authorId)}
           onClose={() => setOpenModal(false)}
           authorName={selectedUser?.authorName || ''}
           authorAvatar={selectedUser?.authorAvatar}
           onStoryViewed={() => selectedUser && markStoriesAsViewed(selectedUser.authorId)}
-          onNextUser={handleNextUser}
-        />
+          onNextUser={handleNextUser}/>
       )}
     </div>
   );
